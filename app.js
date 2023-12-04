@@ -43,11 +43,11 @@ app.use(cors(corsOptions));
 
 // import express inside dynamic added.
 fs.readdirSync('./controllers').forEach((file) => {
-  if (file.substr(-3) == ".js") {
-    route = require('./controllers/' + file);
+  if ( file.endsWith('.js')) {
+    const route = require('./controllers/' + file);
     route.controller(app, io, user_socket_connect_list);
-  }
-})
+  } 
+  })
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
